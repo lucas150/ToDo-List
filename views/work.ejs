@@ -1,0 +1,37 @@
+<%- include("partials/header.ejs") %>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+<div class="heading1">
+  <p>Welcome To Work List</p>
+</div>
+
+<% items.forEach((item, index) => { %>
+  <div class="box">
+    <div class="item">
+      <form action="/work/complete" method="POST">
+        <label class="list-group-item d-flex">
+            <input type="hidden" name="itemIndex" value="<%= index %>">    
+            <input class="form-check-input"  type="checkbox" style="font-size: 1.375em;" onchange="this.form.submit()" <%= item.completed ? 'checked' : '' %> name="checkbox">   
+      </form>
+        <p style="margin-bottom: 0px;margin-top: 8px;" class="<%= item.completed ? 'strikethrough' : '' %>" style="margin-bottom: 0px;"></style><%= item.text %></p>
+    </label>
+  </div>
+  </div>
+<% }); %>
+
+
+ 
+
+<form action="/work/submit" method="POST">
+ <div class="box">  
+ 
+    <input class="form1" type="text" name="newItem" placeholder="Write your Mind" autocomplete="off" >
+    <button type="submit" name="list" class="button">+</button>
+ 
+ </div>
+</form>
+
+
+
+
+<%- include("partials/footer.ejs") %>
